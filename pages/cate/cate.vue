@@ -35,7 +35,7 @@
 		data() {
 			return {
 				scrollTop: 0, // 滚动条距离顶部的距离
-				wh: 0, // 窗口的可用高度 = 屏幕高度 - navigationBar高度 - tabBar 高度
+				wh: 0,  // 窗口的可用高度 = 屏幕高度 - navigationBar高度 - tabBar 高度
 				cateList: [], // 分类数据列表
 				active: 0,  // 当前选中项的索引，默认让第一项被选中
 				cateLevel2: []  // 二级分类列表
