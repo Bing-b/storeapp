@@ -1,16 +1,31 @@
 <script>
 	export default {
 		onLaunch: function() {
-			console.warn('当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！')
-			console.log('App Launch')
+			let that=this;
+			uni.addInterceptor('navigateTo', {//监听跳转
+				success(e) {
+					that.watchRouter();
+				}
+			})
+			uni.addInterceptor('redirectTo', {//监听关闭本页面跳转
+				success(e) {
+					that.watchRouter();
+				}
+			})
 		},
 		onShow: function() {
 			//console.log('App Show')
 		},
 		onHide: function() {
 			//console.log('App Hide')
+		},
+		methods: {
+			watchRouter() {
+				console.log('路由跳转')
+			}
 		}
 	}
+	
 </script>
 
 <style lang="scss">

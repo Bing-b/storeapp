@@ -41,22 +41,23 @@
 		{
 			"root": "subpkg",
 			"pages": [
-				
-			{
+				{
                     "path" : "goods_detail/goods_detail",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
+                    "navigationBarTitleText": "商品详情",
                     "enablePullDownRefresh": false
                 }
                 
                 }
                 ,{
-                    "path" : "good_list/good_list",
+                    "path" : "goods_list/goods_list",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
+                    "navigationBarTitleText": "商品列表",
+                    "enablePullDownRefresh": false,
+					"onReachBottomDistance": 150,   // 页面上拉触底距离
+					"enablePullDownRefresh": true
                 }
                 
                 }
@@ -64,7 +65,7 @@
                     "path" : "search/search",
                     "style" :                                                                                    
                 {
-                    "navigationBarTitleText": "",
+                    "navigationBarTitleText": "商品搜索",
                     "enablePullDownRefresh": false
                 }
                 

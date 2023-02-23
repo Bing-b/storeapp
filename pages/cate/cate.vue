@@ -20,7 +20,7 @@
 					      <view class="cate-lv3-item" v-for="(item3, i3) in item2.children" 
 						  :key="i3" @click="gotoGoodsList(item3)">
 					        <!-- 图片 -->
-					        <image src=""></image>
+					        <image :src="defaultPic"></image>
 					        <!-- 文本 -->
 					        <text>{{item3.cat_name}}</text>
 					      </view>
@@ -39,7 +39,8 @@
 				wh: 0,  // 窗口的可用高度 = 屏幕高度 - navigationBar高度 - tabBar 高度
 				cateList: [], // 分类数据列表
 				active: 0,  // 当前选中项的索引，默认让第一项被选中
-				cateLevel2: []  // 二级分类列表
+				cateLevel2: [],// 二级分类列表
+				defaultPic: 'https://img3.doubanio.com/f/movie/8dd0c794499fe925ae2ae89ee30cd225750457b4/pics/movie/celebrity-default-medium.png'
 			};
 		},
 		onLoad() {
@@ -53,7 +54,7 @@
 				const { data: res } = await uni.$http.get('/api/public/v1/categories')
 				if(res.meta.status !== 200) return uni.$showMsg()
 				this.cateList = res.message
-				console.log(this.cateList)
+				//console.log(this.cateList)
 				this.cateLevel2 = res.message[0].children
 			},
 			activeChange(i) {
@@ -65,12 +66,15 @@
 			},
 			gotoGoodsList(item3) {
 				uni.navigateTo({
-					url: 'subpkg/goods_list/goods_list?cid=' + item3.cat_id
+					url: '/subpkg/goods_list/goods_list?cid=' + item3.cat_id,
+					fail(err) {
+						console.log(err)
+					}
 				})
 			},
 			gotoSearch() {
 				uni.navigateTo({
-					url: '/subpkg/search/search'
+					url: '/subpkg/search/search',
 				})
 			}
 		}
