@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<!-- 使用自定义的搜索组件 -->
+		<my-search @click='gotoSearch'></my-search>
 		<view class="scroll-view-container">
 			<!-- 左侧滚动视图区域 -->
 			<scroll-view class="left-scroll-view" scroll-y :style="{height: wh + 'px'}">
@@ -18,14 +20,13 @@
 					      <view class="cate-lv3-item" v-for="(item3, i3) in item2.children" 
 						  :key="i3" @click="gotoGoodsList(item3)">
 					        <!-- 图片 -->
-					        <image :src="item3.cat_icon"></image>
+					        <image src=""></image>
 					        <!-- 文本 -->
 					        <text>{{item3.cat_name}}</text>
 					      </view>
 					    </view>
 				  </view>
 			</scroll-view> 
-			
 		</view>
 	</view>
 </template>
@@ -43,7 +44,7 @@
 		},
 		onLoad() {
 			const sysInfo = uni.getSystemInfoSync() // 获取当前系统的信息
-			this.wh = sysInfo.windowHeight
+			this.wh = sysInfo.windowHeight - 50  // 可用高度 = 屏幕高度 - navigationBar高度 - tabBar高度 - 自定义的search组件高度
 			
 			this.getCateList() 
 		},
@@ -65,6 +66,11 @@
 			gotoGoodsList(item3) {
 				uni.navigateTo({
 					url: 'subpkg/goods_list/goods_list?cid=' + item3.cat_id
+				})
+			},
+			gotoSearch() {
+				uni.navigateTo({
+					url: '/subpkg/search/search'
 				})
 			}
 		}
