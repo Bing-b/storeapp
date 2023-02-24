@@ -36,7 +36,7 @@ export default {
 		updateGoodsCount(state, goods) {
 		  // 根据 goods_id 查询购物车中对应商品的信息对象
 		  const findResult = state.cart.find(x => x.goods_id === goods.goods_id)
-			debugger
+		  
 		  if(findResult) {
 		    // 更新对应商品的数量
 		    findResult.goods_count = goods.goods_count
