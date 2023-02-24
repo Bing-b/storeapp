@@ -32,7 +32,11 @@
 </template>
 
 <script>
+	// 引入mixin 模块
+	import badgeMix from '@/mixins/tabbar-badge.js'
+	import { mapGetters } from 'vuex'
 	export default {
+		mixins: [badgeMix],
 		data() {
 			return {
 				scrollTop: 0, // 滚动条距离顶部的距离
@@ -48,6 +52,10 @@
 			this.wh = sysInfo.windowHeight - 50  // 可用高度 = 屏幕高度 - navigationBar高度 - tabBar高度 - 自定义的search组件高度
 			
 			this.getCateList() 
+		},
+		computed: {
+		    // 将 m_cart 模块中的 total 映射为当前页面的计算属性
+		    ...mapGetters('m_cart', ['total']),
 		},
 		methods: {
 			async getCateList() {
@@ -76,7 +84,8 @@
 				uni.navigateTo({
 					url: '/subpkg/search/search',
 				})
-			}
+			},
+		
 		}
 	}
 </script>

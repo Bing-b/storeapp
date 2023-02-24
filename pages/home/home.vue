@@ -39,7 +39,11 @@
 </template>
 
 <script>
+	// 引入mixin 模块
+	import badgeMix from '@/mixins/tabbar-badge.js'
+	
 	export default {
+		mixins: [badgeMix],
 		data() {
 			return {
 				swiperList: [], // 轮播数据列表
