@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import { $http } from '@escook/request-miniprogram' // 网络请求包，支持axios
-
+import store from 'store/store.js'
 
 
 
@@ -12,7 +12,8 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
 // #endif
@@ -32,10 +33,14 @@ export function createApp() {
 uni.$http = $http
 $http.baseUrl = 'https://api-ugo-web.itheima.net'
 
+
+$http.beforeRequest = function (options) {
 	uni.showLoading({
 		title: '数据加载中...'
 	})
-$http.beforeRequest = function (options) {
+}
+
+$http.afterRequest = function() {
 	uni.hideLoading()
 }
 
